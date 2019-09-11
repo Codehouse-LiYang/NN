@@ -76,6 +76,38 @@ with tf.Session() as sess:
     weight = sess.run(weights2)
     print("weights2", weight)
 
+# 20190911
+import tensorflow as tf
+
+
+v1 = tf.Variable(tf.constant([1.0]))
+v2 = tf.get_variable("q", [1], initializer=tf.constant_initializer(1.0))
+print(v2.name)
+with tf.Session() as sess:
+    tf.initialize_all_variables().run()
+    with tf.variable_scope("one", reuse=True):
+        print("v1", sess.run(v1))
+        print("v2", v2)
+
+with tf.variable_scope("two", reuse=True):
+    x = tf.get_variable("x", [1], initializer=tf.constant_initializer(1.0))
+    with tf.Session() as sess:
+        tf.global_variables_initializer().run()
+        print(x)
+        print(x.eval())
+
+variable = tf.get_variable("variable", [1], initializer=tf.constant_initializer(1.0))
+print(variable.name)
+
+with tf.variable_scope("vv7"):
+    vv5 = tf.get_variable("variable", [1], initializer=tf.constant_initializer(1.0))
+    print(vv5.name)
+    
+with tf.variable_scope("vv7"):
+    with tf.variable_scope("vv9"):
+        vv11 = tf.get_variable("variable", [1])
+        print(vv11.name)
+
 class Graph:
     def __init__(self):
         pass
