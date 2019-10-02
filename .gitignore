@@ -1,4 +1,12 @@
-*png
-*jpg
-*.ico
-/DATA
+DataSet/
+runs/
+Liev/
+img/
+params/
+
+*pth
+*.pkl
+*.jpg
+*.png
+*.txt 
+
